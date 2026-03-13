@@ -1,0 +1,45 @@
+import React, { useState } from "react";
+
+function App() {
+
+const [leaves, setLeaves] = useState([]);
+const [type, setType] = useState("");
+
+const applyLeave = () => {
+
+if(type === "") return;
+
+setLeaves([...leaves, { type: type }]);
+setType("");
+
+};
+
+return (
+
+<div>
+
+<h2>Leave Management System</h2>
+
+<select value={type} onChange={(e)=>setType(e.target.value)}>
+<option value="">Select Leave</option>
+<option value="Casual Leave">Casual Leave</option>
+<option value="Medical Leave">Medical Leave</option>
+</select>
+
+<button onClick={applyLeave}>Apply Leave</button>
+
+<h3>Applied Leaves</h3>
+
+<ul>
+{leaves.map((leave,index)=>(
+<li key={index}>{leave.type}</li>
+))}
+</ul>
+
+</div>
+
+);
+
+}
+
+export default App;
